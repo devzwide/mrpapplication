@@ -1,4 +1,11 @@
 terraform {
+    cloud {
+        organization = "mrpapplication"
+        workspaces {
+            name = "mrpapplication-workspace"
+        }
+    }
+
     required_providers {
             azurerm = {
             source  = "hashicorp/azurerm"
