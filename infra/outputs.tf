@@ -12,3 +12,9 @@ output "vnet_id" {
   description = "The ID of the managed Virtual Network inside the network module"
   value       = module.mrp_network.vnet_id
 }
+
+output "db_admin_password" {
+  description = "The password generated dynamically for the master administrator schema account."
+  value       = module.mrp_database.admin_password
+  sensitive   = true
+}
