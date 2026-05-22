@@ -34,8 +34,6 @@ module "mrp_database" {
   db_name           = var.db_name
   app_database_name = var.app_database_name
 
-  db_subnet_name = var.subnet_db_name
-
   db_subnet_id        = module.mrp_network.subnet_db_id
   private_dns_zone_id = module.mrp_network.private_dns_zone_id
 }
