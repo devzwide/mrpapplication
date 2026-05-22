@@ -21,6 +21,7 @@ variable "tags" {
 }
 
 variable "resource_group_name" {
+  default     = "rg-mrpapplication-dev-southafricanorth"
   description = "The name of the resource group to create."
   type        = string
 }
