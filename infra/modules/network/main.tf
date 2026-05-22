@@ -18,4 +18,26 @@ resource "azurerm_subnet" "subnet_db" {
   address_prefixes     = [var.subnet_db_address_prefix]
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet_mrpapplication.name
+
+  delegation {
+    name = "postgres-delegation"
+    service_delegation {
+      name    = "Microsoft.DBforPostgreSQL/flexibleServers"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
+    }
+  }
+}
+
+resource "azurerm_private_dns_zone" "postgres_dns" {
+  name                = "${var.environment}-mrp.postgres.database.azure.com"
+  resource_group_name = var.resource_group_name
+  tags                = var.tags
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "dns_vnet_link" {
+  name                  = "link-postgres-to-vnet"
+  resource_group_name   = var.resource_group_name
+  private_dns_zone_name = azurerm_private_dns_zone.postgres_dns.name
+  virtual_network_id    = azurerm_virtual_network.vnet_mrpapplication.id
+  tags                  = var.tags
 }

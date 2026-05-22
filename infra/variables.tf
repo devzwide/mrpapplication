@@ -25,3 +25,21 @@ variable "resource_group_name" {
   description = "The name of the resource group to create."
   type        = string
 }
+
+variable "vnet_address_space" {
+  type        = string
+  description = "CIDR block for the Virtual Network."
+  default     = "10.0.0.0/16"
+}
+
+variable "app_subnet_prefix" {
+  type        = string
+  description = "CIDR block allocation for the application tier subnet."
+  default     = "10.0.1.0/24"
+}
+
+variable "db_subnet_prefix" {
+  type        = string
+  description = "CIDR block allocation for the database tier subnet."
+  default     = "10.0.2.0/24"
+}
