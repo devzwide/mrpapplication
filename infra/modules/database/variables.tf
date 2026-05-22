@@ -48,19 +48,13 @@ variable "db_admin_username" {
 variable "zone" {
   description = "The specific availability zone for the PostgreSQL server."
   type        = string
-  default     = "1"
+  default     = null
 }
 
 variable "sku_name" {
   description = "The SKU pricing tier performance allocation for the PostgreSQL server."
   type        = string
   default     = "B_Standard_B1ms"
-}
-
-variable "app_database_name" {
-  description = "The name of the application database created inside the server."
-  type        = string
-  default     = "mrp_production"
 }
 
 variable "storage_mb" {

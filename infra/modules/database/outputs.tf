@@ -23,3 +23,9 @@ output "admin_password" {
   value       = random_password.db_password.result
   sensitive   = true
 }
+
+output "db_admin_password" {
+  description = "The password generated dynamically for the master administrator schema account."
+  value       = module.mrp_database.admin_password
+  sensitive   = true
+}

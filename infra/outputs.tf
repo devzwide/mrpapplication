@@ -8,7 +8,7 @@ output "resource_group_name" {
   value       = azurerm_resource_group.rg_mrpapplication.name
 }
 
-output "mrp_network_outputs" {
-  description = "Outputs from the network module"
-  value       = module.mrp_network
+output "vnet_id" {
+  description = "The ID of the managed Virtual Network inside the network module"
+  value       = module.mrp_network.vnet_id
 }
