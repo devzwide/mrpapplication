@@ -22,16 +22,17 @@ provider "azurerm" {
 }
 
 
-
-locals {
-  rg-name = "rg-mrpapplication-${var.environment}-${var.location}"
-}
-
 resource "azurerm_resource_group" "rg_mrpapplication" {
-  name     = local.rg-name
+  name     = "rg-mrpapplication-${var.environment}-${var.location}"
   location = var.location
   tags     = var.tags
 }
 
 
-
+module "mrp_network" {
+  source              = "./modules/network"
+  resource_group_name = azurerm_resource_group.rg_mrpapplication.name
+  environment         = var.environment
+  location            = var.location
+  tags                = var.tags
+}
